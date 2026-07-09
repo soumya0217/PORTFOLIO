@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILLUSTRATION — SOUMYA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --inky:    #1E2A38;
+            --ash:     #E2E5E8;
+            --primary:        #E2E5E8;
+            --secondary:      #E2E5E8;
+            --accent:         #E2E5E8;
+            --dark:           #1E2A38;
+            --light:          #E2E5E8;
+            --text-primary:   #1E2A38;
+            --text-secondary: #1E2A38;
+            --card-bg:        #1E2A38;
+            --shadow:         rgba(30, 42, 56, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1E2A38;
+            color: #E2E5E8;
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="8" fill="%23E2E5E8"/></svg>') 16 16, auto;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(226,229,232,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(226,229,232,0.12) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0%   { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(30,42,56,0.97);
+            border-bottom: 2px solid rgba(226,229,232,0.2);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+        }
+
+        .back-btn {
+            color: rgba(226,229,232,0.75);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.7rem 1.8rem;
+            border: 2px solid rgba(226,229,232,0.25);
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background: #E2E5E8;
+            color: #1E2A38;
+            border-color: #E2E5E8;
+            transform: translateX(-4px);
+            box-shadow: 0 8px 20px rgba(226,229,232,0.15);
+        }
+
+        .logo {
+            font-family: 'Italiana', serif;
+            font-size: 2.2rem;
+            letter-spacing: 6px;
+            background: linear-gradient(45deg, #E2E5E8, #ffffff, #E2E5E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glitch 3s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #E2E5E8; }
+            25%       { text-shadow: -2px 0 10px rgba(226,229,232,0.7); transform: skew(-2deg); }
+            50%       { text-shadow: 2px 0 10px #E2E5E8; }
+            75%       { text-shadow: -2px 0 10px rgba(226,229,232,0.7); transform: skew(2deg); }
+        }
+
+        /* ── HERO ── */
+        .project-hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 5% 6rem;
+            text-align: center;
+            background: linear-gradient(160deg, #1E2A38 0%, #16202c 50%, #1E2A38 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(circle at 20% 40%, rgba(226,229,232,0.07) 0%, transparent 55%),
+                radial-gradient(circle at 80% 60%, rgba(226,229,232,0.04) 0%, transparent 55%);
+        }
+
+        /* Big ghost text behind title */
+        .project-hero::after {
+            content: attr(data-title);
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Italiana', serif;
+            font-size: clamp(6rem, 20vw, 18rem);
+            color: rgba(226,229,232,0.025);
+            letter-spacing: 10px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .project-title {
+            font-family: 'Italiana', serif;
+            font-size: clamp(3rem, 10vw, 9rem);
+            margin-bottom: 1.2rem;
+            background: linear-gradient(to right, #E2E5E8 0%, #ffffff 50%, #E2E5E8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            line-height: 0.9;
+            animation: titleReveal 1.2s ease-out;
+        }
+
+        @keyframes titleReveal {
+            0%   { opacity: 0; transform: translateY(80px) rotate(-3deg); filter: blur(15px); }
+            100% { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
+        }
+
+        .project-category {
+            font-family: 'Italiana', serif;
+            font-size: 1.3rem;
+            letter-spacing: 7px;
+            color: rgba(226,229,232,0.55);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-divider {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, #E2E5E8, rgba(226,229,232,0.3));
+            margin: 0 auto;
+            border-radius: 2px;
+            position: relative; z-index: 1;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── IMAGE SECTION ── */
+        .project-image-section {
+            padding: 5rem 5%;
+            background: #16202c;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-image {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 2px solid rgba(226,229,232,0.15);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f1820;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .project-image.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+
+        .project-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* ── DETAILS ── */
+        .project-details {
+            padding: 7rem 5%;
+            background: #E2E5E8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .details-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .details-section {
+            background: rgba(255,255,255,0.6);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(30,42,56,0.12);
+            box-shadow: 0 15px 40px rgba(30,42,56,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+
+        .details-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .details-section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 55px rgba(30,42,56,0.18);
+        }
+
+        .details-section h2 {
+            font-family: 'Italiana', serif;
+            font-size: 2.8rem;
+            letter-spacing: 5px;
+            color: #1E2A38;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .details-section h2::after {
+            content: '';
+            display: block; width: 40px; height: 3px;
+            background: #1E2A38;
+            margin-top: 0.5rem; border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-section p {
+            font-size: 1rem;
+            line-height: 2;
+            color: #1E2A38;
+            margin-bottom: 1.2rem;
+        }
+
+        .details-section strong { color: #1E2A38; font-weight: 900; }
+
+        .tools-list {
+            display: flex; flex-wrap: wrap; gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .tool-tag {
+            padding: 0.6rem 1.2rem;
+            background: rgba(30,42,56,0.08);
+            border: 2px solid rgba(30,42,56,0.25);
+            color: #1E2A38;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            cursor: default;
+        }
+
+        .tool-tag:hover {
+            background: #1E2A38;
+            color: #E2E5E8;
+            border-color: #1E2A38;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(30,42,56,0.25);
+        }
+
+        /* ── LINKS ── */
+        .project-links {
+            padding: 6rem 5%;
+            background: #1E2A38;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-links h2 {
+            font-family: 'Italiana', serif;
+            font-size: 2.8rem;
+            letter-spacing: 6px;
+            color: rgba(226,229,232,0.6);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .links-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            padding: 1.3rem 3rem;
+            background: transparent;
+            border: 2px solid rgba(226,229,232,0.3);
+            color: #E2E5E8;
+            text-decoration: none;
+            font-family: 'Italiana', serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .link-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #E2E5E8;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .link-btn:hover {
+            color: #1E2A38;
+            border-color: #E2E5E8;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(226,229,232,0.12);
+        }
+
+        .link-btn:hover::before { transform: scaleX(1); }
+
+        /* ── NEXT PROJECT ── */
+        .next-project {
+            padding: 7rem 5%;
+            background: #0f1820;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-project::before {
+            content: 'NEXT';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Italiana', serif;
+            font-size: clamp(8rem, 20vw, 18rem);
+            color: rgba(226,229,232,0.03);
+            letter-spacing: 15px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .next-project h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1rem;
+            letter-spacing: 10px;
+            color: rgba(226,229,232,0.35);
+            margin-bottom: 2rem;
+            position: relative; z-index: 1;
+            text-transform: uppercase;
+        }
+
+        .next-project-name {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2rem, 6vw, 5rem);
+            color: rgba(226,229,232,0.85);
+            text-decoration: none;
+            display: inline-block;
+            position: relative; z-index: 1;
+            transition: all 0.35s ease;
+            padding: 1rem 3rem;
+            border: 2px solid rgba(226,229,232,0.15);
+            border-radius: 10px;
+            letter-spacing: 2px;
+        }
+
+        .next-project-name:hover {
+            color: #ffffff;
+            border-color: rgba(226,229,232,0.5);
+            transform: scale(1.05);
+            text-shadow: 0 0 40px rgba(226,229,232,0.3);
+            box-shadow: 0 0 50px rgba(226,229,232,0.07);
+        }
+
+        .next-arrow {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 2rem;
+            color: rgba(226,229,232,0.35);
+            position: relative; z-index: 1;
+            animation: arrowBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(0); }
+            50%       { transform: translateX(12px); }
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 2rem 5%;
+            background: #0a1018;
+            text-align: center;
+            border-top: 2px solid rgba(226,229,232,0.1);
+        }
+
+        footer p {
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+        }
+
+        @media (max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .links-grid { flex-direction: column; align-items: center; }
+            .link-btn { width: 100%; max-width: 300px; text-align: center; }
+            .details-section { padding: 2rem; }
+            nav { padding: 1.2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <nav>
+        <a href="index.html" class="back-btn">← BACK</a>
+        <a href="index.html" class="logo">SOUMYA</a>
+    </nav>
+
+    <section class="project-hero" data-title="ILLUSTRATION">
+        <h1 class="project-title">ILLUSTRATION</h1>
+        <p class="project-category">Visual Identity & Poster Design</p>
+        <div class="hero-divider"></div>
+    </section>
+
+    <section class="project-image-section">
+        <div class="project-image" id="projectImg">
+            <img src="projects/66 (1).png" alt="ILLUSTRATION">
+        </div>
+    </section>
+
+    <section class="project-details">
+        <div class="details-grid">
+            <div class="details-section" id="detailLeft">
+                <h2>About Project</h2>
+                <p>A bold visual identity project featuring modern typography and experimental layouts. The design explores the intersection of street culture and contemporary graphics.</p>
+                <p>
+                    <strong>Role:</strong> Lead Designer<br>
+                    <strong>Year:</strong> 2024<br>
+                    <strong>Category:</strong> Visual Identity & Poster Design
+                </p>
+            </div>
+
+            <div class="details-section" id="detailRight" style="transition-delay: 0.15s;">
+                <h2>Tools & Skills</h2>
+                <div class="tools-list">
+                    <span class="tool-tag">POSTER DESIGN</span>
+                    <span class="tool-tag">TYPOGRAPHY</span>
+                    <span class="tool-tag">BRAND IDENTITY</span>
+                    <span class="tool-tag">LAYOUT DESIGN</span>
+                    <span class="tool-tag">ADOBE ILLUSTRATOR</span>
+                </div>
+                <h2 style="margin-top: 2.5rem;">Deliverables</h2>
+                <p>▸ Concept Development</p>
+                <p>▸ Visual Design</p>
+                <p>▸ Final Artwork</p>
+                <p>▸ Brand Guidelines</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-links">
+        <h2>View Project</h2>
+        <div class="links-grid">
+            <a href="#" class="link-btn" target="_blank">BEHANCE</a>
+            <a href="#" class="link-btn" target="_blank">DRIBBBLE</a>
+            <a href="#" class="link-btn" target="_blank">INSTAGRAM</a>
+        </div>
+    </section>
+
+    <section class="next-project">
+        <h3>Next Project</h3>
+        <a href="project-post.html" class="next-project-name">SOCIAL MEDIA POST</a>
+        <span class="next-arrow">→</span>
+    </section>
+
+    <footer>
+        <p>© 2024 SOUMYA — VISUAL MAVERICK</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        ['projectImg','detailLeft','detailRight'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+    </script>
+</body>
+</html>
