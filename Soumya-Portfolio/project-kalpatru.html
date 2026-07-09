@@ -121,7 +121,6 @@
             75%       { text-shadow: -2px 0 10px rgba(226,229,232,0.7); transform: skew(2deg); }
         }
 
-        /* ── HERO ── */
         .project-hero {
             min-height: 60vh;
             display: flex;
@@ -144,7 +143,6 @@
                 radial-gradient(circle at 80% 60%, rgba(226,229,232,0.04) 0%, transparent 55%);
         }
 
-        /* Big ghost text behind title */
         .project-hero::after {
             content: attr(data-title);
             position: absolute;
@@ -210,11 +208,15 @@
             background: #16202c;
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
 
         .project-image {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
             border: 2px solid rgba(226,229,232,0.15);
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
             border-radius: 12px;
@@ -459,7 +461,6 @@
             50%       { transform: translateX(12px); }
         }
 
-        /* ── FOOTER ── */
         footer {
             padding: 2rem 5%;
             background: #0a1018;
@@ -497,8 +498,11 @@
     </section>
 
     <section class="project-image-section">
-        <div class="project-image" id="projectImg">
+        <div class="project-image" id="projectImg1">
             <img src="projects/kalpataru.jpeg" alt="KALPATRU">
+        </div>
+        <div class="project-image" id="projectImg2" style="transition-delay: 0.2s;">
+            <img src="projects/kalapatru_1.jpg" alt="KALPATRU 2">
         </div>
     </section>
 
@@ -552,7 +556,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.12 });
-        ['projectImg','detailLeft','detailRight'].forEach(id => {
+        ['projectImg1','projectImg2','detailLeft','detailRight'].forEach(id => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
         });
